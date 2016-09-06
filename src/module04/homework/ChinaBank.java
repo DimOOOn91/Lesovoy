@@ -1,23 +1,64 @@
 package module04.homework;
 
 public class ChinaBank extends Bank {
+
+
     @Override
-    int getLimitOfWithdrawal() {
-        return 0;
+    public int getLimitOfWithdrawal() {
+        switch (getCurrency()) {
+            case USD:
+                return 100;
+
+            case EUR:
+                return 150;
+        }
+        return -1;
     }
 
     @Override
     int getLimitOfFunding() {
-        return 0;
+        switch (getCurrency()) {
+            case USD:
+                return 10000;
+
+            case EUR:
+                return 5000;
+        }
+        return -1;
     }
 
     @Override
-    int getMonthlyRate() {
-        return 0;
+    double getMonthlyRate() {
+        switch (getCurrency()) {
+            case USD:
+                return 0.01;
+
+            case EUR:
+                return 0;
+        }
+        return -1;
     }
 
     @Override
-    int getCommission() {
+    double getCommission(int withdraw) {
+        if (withdraw <= 1000){
+            switch (getCurrency()){
+                case USD:
+                    return 0.03;
+
+                case EUR:
+                    return 0.10;
+            }
+        } else {
+            switch (getCurrency()){
+                case USD:
+                    return 0.05;
+
+                case EUR:
+                    return 0.11;
+            }
+        }
         return 0;
     }
+
 }
