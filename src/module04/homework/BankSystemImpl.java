@@ -12,7 +12,7 @@ public class BankSystemImpl implements BankSystem {
     @Override
     public void fundUser(User user, int amount) {
         if (checkBankFundingLimit(user, amount))
-        user.setBalance(user.getBalance() + amount - commission(user, amount));
+            user.setBalance(user.getBalance() + amount - commission(user, amount));
     }
 
     @Override

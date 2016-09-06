@@ -79,7 +79,7 @@ public abstract class Bank {
 
     abstract double getCommission(int withdraw);
 
-    double moneyPaidMonthlyForSalary(){
+    double moneyPaidMonthlyForSalary() {
         return numberOfEmployees * avrSalaryOfEmployee;
     }
 

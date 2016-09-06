@@ -44,8 +44,8 @@ public class EUBank extends Bank {
 
     @Override
     double getCommission(int withdraw) {
-        if (withdraw <= 1000){
-            switch (getCurrency()){
+        if (withdraw <= 1000) {
+            switch (getCurrency()) {
                 case USD:
                     return 0.05;
 
@@ -53,7 +53,7 @@ public class EUBank extends Bank {
                     return 0.02;
             }
         } else {
-            switch (getCurrency()){
+            switch (getCurrency()) {
                 case USD:
                     return 0.07;
 

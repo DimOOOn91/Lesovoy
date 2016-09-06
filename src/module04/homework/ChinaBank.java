@@ -44,8 +44,8 @@ public class ChinaBank extends Bank {
 
     @Override
     double getCommission(int withdraw) {
-        if (withdraw <= 1000){
-            switch (getCurrency()){
+        if (withdraw <= 1000) {
+            switch (getCurrency()) {
                 case USD:
                     return 0.03;
 
@@ -53,7 +53,7 @@ public class ChinaBank extends Bank {
                     return 0.10;
             }
         } else {
-            switch (getCurrency()){
+            switch (getCurrency()) {
                 case USD:
                     return 0.05;
 
