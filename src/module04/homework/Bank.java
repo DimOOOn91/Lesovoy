@@ -9,6 +9,12 @@ public abstract class Bank {
     private long rating;
     private long totalCapital;
 
+    public Bank(long id, String bankCountry, Currency currency) {
+        this.id = id;
+        this.bankCountry = bankCountry;
+        this.currency = currency;
+    }
+
     public long getId() {
         return id;
     }
@@ -77,4 +83,16 @@ public abstract class Bank {
         return numberOfEmployees * avrSalaryOfEmployee;
     }
 
+    @Override
+    public String toString() {
+        return "Bank{" +
+                "id=" + id +
+                ", bankCountry='" + bankCountry + '\'' +
+                ", currency=" + currency +
+                ", numberOfEmployees=" + numberOfEmployees +
+                ", avrSalaryOfEmployee=" + avrSalaryOfEmployee +
+                ", rating=" + rating +
+                ", totalCapital=" + totalCapital +
+                '}';
+    }
 }

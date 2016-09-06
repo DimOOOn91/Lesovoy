@@ -2,6 +2,9 @@ package module04.homework;
 
 public class ChinaBank extends Bank {
 
+    public ChinaBank(long id, String bankCountry, Currency currency) {
+        super(id, bankCountry, currency);
+    }
 
     @Override
     public int getLimitOfWithdrawal() {
