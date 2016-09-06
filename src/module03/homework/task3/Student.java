@@ -1,6 +1,5 @@
 package module03.homework.task3;
 
-
 class Student {
     private String firstName;
     private String lastName;
@@ -8,6 +7,16 @@ class Student {
     private Course[] coursesTaken;
     private int age;
 
+    Student(String firstName, String lastName, int group) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.group = group;
+    }
+
+    Student(String lastName, Course[] coursesTaken) {
+        this.lastName = lastName;
+        this.coursesTaken = coursesTaken;
+    }
 
     String getFirstName() {
         return firstName;
@@ -47,17 +56,6 @@ class Student {
 
     void setAge(int age) {
         this.age = age;
-    }
-
-    Student(String firstName, String lastName, int group) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.group = group;
-    }
-
-    Student(String lastName, Course[] coursesTaken) {
-        this.lastName = lastName;
-        this.coursesTaken = coursesTaken;
     }
 
 }

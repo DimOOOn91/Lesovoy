@@ -136,7 +136,6 @@ public class Task1 {
         return secondLargest;
     }
 
-
     public static void main(String[] args) {
 
         System.out.println("Total sum in the Integer array is: " + sum(arrayInt));

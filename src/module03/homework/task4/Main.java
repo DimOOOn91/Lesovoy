@@ -16,7 +16,6 @@ public class Main {
         System.out.println(user1.getSalary());
         System.out.println(user1.getMonthsOfEmployment());
         System.out.println(user1.companyNameLength());
-
     }
 
 }

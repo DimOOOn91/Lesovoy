@@ -8,6 +8,17 @@ class Course {
     private int hoursDuration;
     private String teacherName;
 
+    Course(Date startDate, String name) {
+        this.startDate = startDate;
+        this.name = name;
+    }
+
+    Course(String name, int hoursDuration, String teacherName) {
+        this.name = name;
+        this.hoursDuration = hoursDuration;
+        this.teacherName = teacherName;
+    }
+
     public Date getStartDate() {
         return startDate;
     }
@@ -37,17 +48,6 @@ class Course {
     }
 
     public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
-    }
-
-    Course(Date startDate, String name) {
-        this.startDate = startDate;
-        this.name = name;
-    }
-
-    Course(String name, int hoursDuration, String teacherName) {
-        this.name = name;
-        this.hoursDuration = hoursDuration;
         this.teacherName = teacherName;
     }
 

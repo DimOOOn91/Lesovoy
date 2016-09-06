@@ -1,6 +1,5 @@
 package module03.homework.task2;
 
-
 public class Main {
 
     private static Integer a = 102;
