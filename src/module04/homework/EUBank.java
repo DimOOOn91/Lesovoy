@@ -1,6 +1,6 @@
-package module04.homework.task1;
+package module04.homework;
 
-public class USBank extends Bank {
+public class EUBank extends Bank {
     @Override
     int getLimitOfWithdrawal() {
         return 0;
