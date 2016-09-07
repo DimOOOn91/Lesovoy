@@ -9,7 +9,7 @@ public abstract class Bank {
     private long rating;
     private long totalCapital;
 
-    public Bank(long id, String bankCountry, Currency currency) {
+    Bank(long id, String bankCountry, Currency currency) {
         this.id = id;
         this.bankCountry = bankCountry;
         this.currency = currency;
@@ -95,4 +95,5 @@ public abstract class Bank {
                 ", totalCapital=" + totalCapital +
                 '}';
     }
+
 }

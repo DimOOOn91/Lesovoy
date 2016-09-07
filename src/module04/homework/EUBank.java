@@ -2,7 +2,7 @@ package module04.homework;
 
 public class EUBank extends Bank {
 
-    public EUBank(long id, String bankCountry, Currency currency) {
+    EUBank(long id, String bankCountry, Currency currency) {
         super(id, bankCountry, currency);
     }
 
@@ -62,6 +62,19 @@ public class EUBank extends Bank {
             }
         }
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "EUBank{" +
+                "id=" + getId() +
+                ", bankCountry='" + getBankCountry() + '\'' +
+                ", currency=" + getCurrency() +
+                ", numberOfEmployees=" + getNumberOfEmployees() +
+                ", avrSalaryOfEmployee=" + getAvrSalaryOfEmployee() +
+                ", rating=" + getRating() +
+                ", totalCapital=" + getTotalCapital() +
+                '}';
     }
 
 }

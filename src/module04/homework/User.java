@@ -9,7 +9,7 @@ public class User {
     private int salary;
     private Bank bank;
 
-    public User(long id, String name, double balance, int monthsOfEmployment, String companyName, int salary, Bank bank) {
+    User(long id, String name, double balance, int monthsOfEmployment, String companyName, int salary, Bank bank) {
         this.id = id;
         this.name = name;
         this.balance = balance;
@@ -77,7 +77,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "user" +id+ "{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", balance=" + balance +
@@ -87,4 +87,5 @@ public class User {
                 ", bank=" + bank +
                 '}';
     }
+
 }

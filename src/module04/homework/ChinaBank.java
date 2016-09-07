@@ -2,7 +2,7 @@ package module04.homework;
 
 public class ChinaBank extends Bank {
 
-    public ChinaBank(long id, String bankCountry, Currency currency) {
+    ChinaBank(long id, String bankCountry, Currency currency) {
         super(id, bankCountry, currency);
     }
 
@@ -62,6 +62,19 @@ public class ChinaBank extends Bank {
             }
         }
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "ChinaBank{" +
+                "id=" + getId() +
+                ", bankCountry='" + getBankCountry() + '\'' +
+                ", currency=" + getCurrency() +
+                ", numberOfEmployees=" + getNumberOfEmployees() +
+                ", avrSalaryOfEmployee=" + getAvrSalaryOfEmployee() +
+                ", rating=" + getRating() +
+                ", totalCapital=" + getTotalCapital() +
+                '}';
     }
 
 }
