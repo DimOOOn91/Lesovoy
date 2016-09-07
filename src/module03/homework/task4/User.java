@@ -65,7 +65,7 @@ class User {
         this.currancy = currancy;
     }
 
-    void paySallery() {
+    void paySalary() {
         balance += salary;
     }
 
@@ -92,8 +92,8 @@ class User {
         return companyName.length();
     }
 
-    int monthIncreaser(int addMonth) {
-        return monthsOfEmployment += addMonth;
+    void monthIncreaser(int addMonth) {
+        monthsOfEmployment += addMonth;
     }
 
 }

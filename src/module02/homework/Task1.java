@@ -137,7 +137,6 @@ public class Task1 {
     }
 
     public static void main(String[] args) {
-
         System.out.println("Total sum in the Integer array is: " + sum(arrayInt));
         System.out.println("Total sum in the Double array is: " + sum(arrayDouble));
         System.out.println("Min item in the Integer array is: " + min(arrayInt));

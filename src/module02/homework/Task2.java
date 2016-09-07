@@ -62,4 +62,5 @@ public class Task2 {
     private static double fundBalance(double balance, double fund) {
         return balance + fund;
     }
+
 }

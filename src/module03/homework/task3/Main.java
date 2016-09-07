@@ -19,7 +19,7 @@ public class Main {
 
         SpecialStudent objSpecialStudent1 = new SpecialStudent("Whitnie", "Manto", 2, "KPI", 87, 33455);
         SpecialStudent objSpecialStudent2 = new SpecialStudent("Geert", "Forester", 1);
-        SpecialStudent objSpecialStudent3 = new SpecialStudent("Geert", "Forester", 1, 7777777);
+        SpecialStudent objSpecialStudent3 = new SpecialStudent("Geert", "Forester", 1, 7777777, "geert@yahoo.com");
     }
 
 }
