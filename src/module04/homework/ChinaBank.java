@@ -2,64 +2,51 @@ package module04.homework;
 
 public class ChinaBank extends Bank {
 
-    ChinaBank(long id, String bankCountry, Currency currency) {
-        super(id, bankCountry, currency);
+    public ChinaBank(long id, String bankCountry, Currency currency, int numberOfEmployees,
+                     double avrSalaryOfEmployee, long rating, long totalCapital) {
+        super(id, bankCountry, currency, numberOfEmployees, avrSalaryOfEmployee, rating, totalCapital);
     }
 
     @Override
     public int getLimitOfWithdrawal() {
-        switch (getCurrency()) {
-            case USD:
-                return 100;
-
-            case EUR:
-                return 150;
+        if (getCurrency() == Currency.USD) {
+            return 100;
+        } else if (getCurrency() == Currency.EUR) {
+            return 150;
         }
-        return -1;
+        return 0;
     }
 
     @Override
     int getLimitOfFunding() {
-        switch (getCurrency()) {
-            case USD:
-                return 10000;
-
-            case EUR:
-                return 5000;
+        if (getCurrency() == Currency.USD) {
+            return 10_000;
+        } else if (getCurrency() == Currency.EUR) {
+            return 5_000;
         }
-        return -1;
+        return 0;
     }
 
     @Override
-    double getMonthlyRate() {
-        switch (getCurrency()) {
-            case USD:
-                return 0.01;
-
-            case EUR:
-                return 0;
+    int getMonthlyRate() {
+        if (getCurrency() == Currency.USD) {
+            return 1;
+        } else if (getCurrency() == Currency.EUR) {
+            return 0;
         }
-        return -1;
+        return 0;
     }
 
     @Override
-    double getCommission(int withdraw) {
-        if (withdraw <= 1000) {
-            switch (getCurrency()) {
-                case USD:
-                    return 0.03;
-
-                case EUR:
-                    return 0.10;
-            }
-        } else {
-            switch (getCurrency()) {
-                case USD:
-                    return 0.05;
-
-                case EUR:
-                    return 0.11;
-            }
+    int getCommission(int withdraw) {
+        if (withdraw <= 1000 && getCurrency() == Currency.USD) {
+            return 3;
+        } else if (withdraw > 1000 && getCurrency() == Currency.USD) {
+            return 5;
+        } else if (withdraw <= 1000 && getCurrency() == Currency.EUR) {
+            return 10;
+        } else if (withdraw > 1000 && getCurrency() == Currency.EUR) {
+            return 11;
         }
         return 0;
     }

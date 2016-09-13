@@ -1,6 +1,7 @@
 package module04.homework;
 
 public class User {
+
     private long id;
     private String name;
     private double balance;
@@ -77,7 +78,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "user" +id+ "{" +
+        return "User {" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", balance=" + balance +

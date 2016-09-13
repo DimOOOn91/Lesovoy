@@ -2,64 +2,51 @@ package module04.homework;
 
 public class EUBank extends Bank {
 
-    EUBank(long id, String bankCountry, Currency currency) {
-        super(id, bankCountry, currency);
+    public EUBank(long id, String bankCountry, Currency currency, int numberOfEmployees,
+                  double avrSalaryOfEmployee, long rating, long totalCapital) {
+        super(id, bankCountry, currency, numberOfEmployees, avrSalaryOfEmployee, rating, totalCapital);
     }
 
     @Override
     public int getLimitOfWithdrawal() {
-        switch (getCurrency()) {
-            case USD:
-                return 2000;
-
-            case EUR:
-                return 2200;
+        if (getCurrency() == Currency.USD) {
+            return 2000;
+        } else if (getCurrency() == Currency.EUR) {
+            return 2200;
         }
-        return -1;
+        return 0;
     }
 
     @Override
     int getLimitOfFunding() {
-        switch (getCurrency()) {
-            case USD:
-                return 10000;
-
-            case EUR:
-                return 20000;
+        if (getCurrency() == Currency.USD) {
+            return 10000;
+        } else if (getCurrency() == Currency.EUR) {
+            return 20000;
         }
-        return -1;
+        return 0;
     }
 
     @Override
-    double getMonthlyRate() {
-        switch (getCurrency()) {
-            case USD:
-                return 0;
-
-            case EUR:
-                return 0.01;
+    int getMonthlyRate() {
+        if (getCurrency() == Currency.USD) {
+            return 0;
+        } else if (getCurrency() == Currency.EUR) {
+            return 1;
         }
-        return -1;
+        return 0;
     }
 
     @Override
-    double getCommission(int withdraw) {
-        if (withdraw <= 1000) {
-            switch (getCurrency()) {
-                case USD:
-                    return 0.05;
-
-                case EUR:
-                    return 0.02;
-            }
-        } else {
-            switch (getCurrency()) {
-                case USD:
-                    return 0.07;
-
-                case EUR:
-                    return 0.04;
-            }
+    int getCommission(int withdraw) {
+        if (withdraw <= 1000 && getCurrency() == Currency.USD) {
+            return 5;
+        } else if (withdraw > 1000 && getCurrency() == Currency.USD) {
+            return 7;
+        } else if (withdraw <= 1000 && getCurrency() == Currency.EUR) {
+            return 2;
+        } else if (withdraw > 1000 && getCurrency() == Currency.EUR) {
+            return 4;
         }
         return 0;
     }
@@ -76,5 +63,4 @@ public class EUBank extends Bank {
                 ", totalCapital=" + getTotalCapital() +
                 '}';
     }
-
 }
