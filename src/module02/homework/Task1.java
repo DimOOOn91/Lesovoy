@@ -9,8 +9,6 @@ public class Task1 {
     //int sum method
     static int sum(int[] array) {
         int sum = 0;
-        boolean i = true;
-
         for (int item : array) {
             sum += item;
         }
