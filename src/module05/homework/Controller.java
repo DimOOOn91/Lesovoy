@@ -8,9 +8,9 @@ public class Controller {
 
     public Room[] requestRooms(int price, int persons, String city, String hotel) {
 
-        Room[] googleAPIRooms = googleAPI.findRooms(price, persons, city, hotel);
-        Room[] bookingComAPIRooms = bookingComAPI.findRooms(price, persons, city, hotel);
-        Room[] tripAdvisorAPIRooms = tripAdvisorAPI.findRooms(price, persons, city, hotel);
+        Room[] googleAPIRooms = apis[0].findRooms(price, persons, city, hotel);
+        Room[] bookingComAPIRooms = apis[1].findRooms(price, persons, city, hotel);
+        Room[] tripAdvisorAPIRooms = apis[2].findRooms(price, persons, city, hotel);
 
         Room[] requestedRooms = new Room[googleAPIRooms.length + bookingComAPIRooms.length + tripAdvisorAPIRooms.length];
 
