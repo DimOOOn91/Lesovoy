@@ -27,7 +27,7 @@ public class GoogleAPI implements API {
         int index = 0;
 
         for (int i = 0; i < rooms.length; i++) {
-            if (rooms[i].equals(requestedRoom)) {
+            if (rooms[i].equals(requestedRoom) && rooms[i].equalsHotelName(requestedRoom)) {
                 tempRooms[index] = rooms[i];
                 index++;
             }

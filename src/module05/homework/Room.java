@@ -78,6 +78,15 @@ public class Room {
         return result;
     }
 
+    public boolean equalsHotelName(Room room) {
+        if (hotelName != room.hotelName) {
+            if (room.hotelName != null) {
+            return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -91,15 +100,22 @@ public class Room {
         }
         Room room = (Room) obj;
         if (price != room.price) {
-            return false;
+            if (room.price != 0) {
+                return false;
+            }
         }
         if (persons != room.persons) {
+            if (room.persons != 0) {
+                return false;
+            }
+        }
+        if (!cityName.equals(room.cityName)) {
+            if (room.cityName == null) {
+                return true;
+            }
             return false;
         }
-        if (hotelName != null ? !hotelName.equals(room.hotelName) : room.hotelName != null) {
-            return false;
-        }
-        return cityName != null ? cityName.equals(room.cityName) : room.cityName == null;
+        return true;
     }
 
     @Override
