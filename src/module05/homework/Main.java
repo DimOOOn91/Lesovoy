@@ -14,6 +14,9 @@ public class Main {
 
         controller.requestRooms(320, 2, "Lvov", "Flagman");
         System.out.println("-------------\n");
+
+        controller.requestRooms2(0, 0, null, null);
+        System.out.println("-------------\n");
         System.out.println("-------------\n");
 
 

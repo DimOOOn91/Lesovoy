@@ -4,7 +4,7 @@ public class Controller {
     private API googleAPI = new GoogleAPI();
     private API bookingComAPI = new BookingComAPI();
     private API tripAdvisorAPI = new TripAdvisorAPI();
-    API[] apis = new API[] {googleAPI, bookingComAPI, tripAdvisorAPI};
+    API[] apis = new API[]{googleAPI, bookingComAPI, tripAdvisorAPI};
 
     public Room[] requestRooms(int price, int persons, String city, String hotel) {
 
@@ -26,10 +26,40 @@ public class Controller {
             DAO dao = new DAOImpl();
 
             for (Room room : requestedRooms) {
-            dao.save(room);
+                dao.save(room);
             }
         }
 
+        return requestedRooms;
+    }
+
+    public Room[] requestRooms2(int price, int persons, String city, String hotel) {
+        int counter = 0;
+        for (API api : apis) {
+            if (api.findRooms(price, persons, city, hotel).length != 0) {
+                counter += api.findRooms(price, persons, city, hotel).length;
+            }
+        }
+
+        if (counter == 0) {
+            System.out.println("Sorry but rooms with the requested criteria have not been found.");
+            return null;
+        }
+
+        Room[] requestedRooms = new Room[counter];
+        DAO dao = new DAOImpl();
+        counter = 0;
+
+
+        for (API api : apis) {
+            if (api.findRooms(price, persons, city, hotel).length != 0) {
+                for (Room room : api.findRooms(price, persons, city, hotel)) {
+                    requestedRooms[counter++] = room;
+                    dao.save(room);
+                }
+            }
+        }
+        System.out.println(requestedRooms.length + " rooms With the requested criteria were found.");
         return requestedRooms;
     }
 
