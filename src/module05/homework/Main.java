@@ -7,16 +7,16 @@ public class Main {
         Controller controller = new Controller();
 
         controller.requestRooms(400, 2, "Lvov", "Flagman");
-        System.out.println("-------------\n");
+        System.out.println("\n-------------\n");
 
         controller.requestRooms(280, 1, "Nikolaev", "Dobrynja");
-        System.out.println("-------------\n");
+        System.out.println("\n-------------\n");
 
         controller.requestRooms(320, 2, "Lvov", "Flagman");
-        System.out.println("-------------\n");
+        System.out.println("\n-------------\n");
 
         controller.requestRooms2(0, 0, null, null);
-        System.out.println("-------------\n");
+        System.out.println("\n-------------\n");
         System.out.println("-------------\n");
 
 
