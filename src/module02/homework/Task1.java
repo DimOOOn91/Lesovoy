@@ -1,5 +1,9 @@
 package module02.homework;
 
+import module06.homework.ArraysUtils;
+
+import java.util.Arrays;
+
 public class Task1 {
 
     //variables
@@ -135,19 +139,23 @@ public class Task1 {
     }
 
     public static void main(String[] args) {
-        System.out.println("Total sum in the Integer array is: " + sum(arrayInt));
-        System.out.println("Total sum in the Double array is: " + sum(arrayDouble));
-        System.out.println("Min item in the Integer array is: " + min(arrayInt));
-        System.out.println("Min item in the Double array is: " + min(arrayDouble));
-        System.out.println("Max item in the Integer array is: " + max(arrayInt));
-        System.out.println("Max item in the Double array is: " + max(arrayDouble));
-        System.out.println("Max positive item in the Integer array is: " + maxPositive(arrayInt));
-        System.out.println("Max positive item in the Double array is: " + maxPositive(arrayDouble));
-        System.out.println("Multiplication of all items in the Integer array is: " + multiplication(arrayInt));
-        System.out.println("Multiplication of all items in the Double array is: " + multiplication(arrayDouble));
-        System.out.println("Modulus of the first and the last item in the Integer array is: " + modulus(arrayInt));
-        System.out.println("Modulus of the first and the last item in the Double array is: " + modulus(arrayDouble));
-        System.out.println("Second largest item in the Integer array is: " + secondLargest(arrayInt));
-        System.out.println("Second largest item in the Double array is: " + secondLargest(arrayDouble));
+//        System.out.println("Total sum in the Integer array is: " + sum(arrayInt));
+//        System.out.println("Total sum in the Double array is: " + sum(arrayDouble));
+//        System.out.println("Min item in the Integer array is: " + min(arrayInt));
+//        System.out.println("Min item in the Double array is: " + min(arrayDouble));
+//        System.out.println("Max item in the Integer array is: " + max(arrayInt));
+//        System.out.println("Max item in the Double array is: " + max(arrayDouble));
+//        System.out.println("Max positive item in the Integer array is: " + maxPositive(arrayInt));
+//        System.out.println("Max positive item in the Double array is: " + maxPositive(arrayDouble));
+//        System.out.println("Multiplication of all items in the Integer array is: " + multiplication(arrayInt));
+//        System.out.println("Multiplication of all items in the Double array is: " + multiplication(arrayDouble));
+//        System.out.println("Modulus of the first and the last item in the Integer array is: " + modulus(arrayInt));
+//        System.out.println("Modulus of the first and the last item in the Double array is: " + modulus(arrayDouble));
+//        System.out.println("Second largest item in the Integer array is: " + secondLargest(arrayInt));
+//        System.out.println("Second largest item in the Double array is: " + secondLargest(arrayDouble));
+
+        System.out.println("module 6:");
+        System.out.println("Reverse Integer array: " + Arrays.toString(ArraysUtils.reverse(arrayInt)));
+        System.out.println("Even of Integer array are below:" + "\n" + Arrays.toString(ArraysUtils.findEvenElements(arrayInt)));
     }
 }
