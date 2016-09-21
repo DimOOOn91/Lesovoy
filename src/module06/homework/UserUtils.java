@@ -5,73 +5,64 @@ import java.util.Arrays;
 public class UserUtils {
 
     public static User[] uniqueUsers(User[] users) {
-        int counter = 0;
-        for (int i = users.length - 1; i >= 0; i--) {
-            for (int j = 0; j < i; j++) {
-                if (users[i].equals(users[j])) {
-                    counter++;
-                    users[i] = users[users.length - counter];
-                    users[users.length - counter] = null;
-                    break;
-                }
+        users = deleteEmptyUsers(users);
+        User[] result = new User[0];
+        for (User user : users) {
+            boolean isContain = isContain(result, user);
+            if (!isContain) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = user;
             }
         }
+        return result;
+    }
 
-        return users;
+    private static boolean isContain(User[] result, User user) {
+        for (User key : result) {
+            if (key.equals(user)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static User[] usersWithConditionalBalance(User[] users, int balance) {
-        int counter = 0;
+        users = uniqueUsers(users);
+        User[] result = new User[0];
         for (User user : users) {
-            if (user != null && user.getBalance() == balance) {
-                counter++;
+            if (user.getBalance() == balance) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = user;
             }
         }
-
-        User[] usersWithConditionalBalance = new User[counter];
-        counter = 0;
-
-        for (User user : users) {
-            if (user != null && user.getBalance() == balance) {
-                usersWithConditionalBalance[counter++] = user;
-            }
-        }
-        return usersWithConditionalBalance;
+        return result;
     }
 
     public static final User[] paySalaryToUsers(User[] users) {
+        users = uniqueUsers(users);
         for (User user : users) {
-            if(user != null) {
-                user.setBalance(user.getBalance() + user.getSalary());
-            }
+            user.setBalance(user.getBalance() + user.getSalary());
         }
         return users;
     }
 
     public static final long[] getUsersId(User[] users) {
+        users = uniqueUsers(users);
         long[] usersId = new long[users.length];
         for (int i = 0; i < users.length; i++) {
-            if (users[i] != null) {
-                usersId[i] = users[i].getId();
-            } else {
-                usersId[i] = 0;
-            }
+            usersId[i] = users[i].getId();
         }
         return usersId;
     }
 
     public static User[] deleteEmptyUsers(User[] users) {
-        int counter = 0;
-        for (int i = users.length - 1; i >= 0; i--) {
-            if (users[i] == null) {
-                counter++;
-                users[i] = users[users.length - counter];
-                users[users.length - counter] = null;
+        User[] result = new User[0];
+        for (User user : users) {
+            if (user != null) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = user;
             }
         }
-
-        User[] revisedUsers = Arrays.copyOf(users, users.length - counter);
-
-        return revisedUsers;
+        return result;
     }
 }
