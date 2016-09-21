@@ -79,43 +79,23 @@ public class Room {
     }
 
     public boolean equalsHotelName(Room room) {
-        if (hotelName != room.hotelName) {
-            if (room.hotelName != null) {
+        if (room.hotelName != null && hotelName != room.hotelName) {
             return false;
-            }
         }
         return true;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        Room room = (Room) obj;
-        if (price != room.price) {
-            if (room.price != 0) {
-                return false;
-            }
-        }
-        if (persons != room.persons) {
-            if (room.persons != 0) {
-                return false;
-            }
-        }
-        if (!cityName.equals(room.cityName)) {
-            if (room.cityName == null) {
-                return true;
-            }
-            return false;
-        }
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Room room = (Room) o;
+
+        if (price != room.price) return false;
+        if (persons != room.persons) return false;
+        return cityName != null ? cityName.equals(room.cityName) : room.cityName == null;
+
     }
 
     @Override

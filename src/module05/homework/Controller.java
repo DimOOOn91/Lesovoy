@@ -1,5 +1,7 @@
 package module05.homework;
 
+import java.util.Arrays;
+
 public class Controller {
     private API googleAPI = new GoogleAPI();
     private API bookingComAPI = new BookingComAPI();
@@ -7,90 +9,39 @@ public class Controller {
     API[] apis = new API[]{googleAPI, bookingComAPI, tripAdvisorAPI};
 
     public Room[] requestRooms(int price, int persons, String city, String hotel) {
-
-        Room[] googleAPIRooms = apis[0].findRooms(price, persons, city, hotel);
-        Room[] bookingComAPIRooms = apis[1].findRooms(price, persons, city, hotel);
-        Room[] tripAdvisorAPIRooms = apis[2].findRooms(price, persons, city, hotel);
-
-        Room[] requestedRooms = new Room[googleAPIRooms.length + bookingComAPIRooms.length + tripAdvisorAPIRooms.length];
-
-        System.arraycopy(googleAPIRooms, 0, requestedRooms, 0, googleAPIRooms.length);
-        System.arraycopy(bookingComAPIRooms, 0, requestedRooms, googleAPIRooms.length, bookingComAPIRooms.length);
-        System.arraycopy(tripAdvisorAPIRooms, 0, requestedRooms, googleAPIRooms.length + bookingComAPIRooms.length, tripAdvisorAPIRooms.length);
-
-        if (requestedRooms.length == 0) {
-            System.out.println("Sorry but rooms with the requested criteria have not been found.");
-        } else {
-            System.out.println("With the requested criteria were found " + requestedRooms.length + " rooms. Please find them below:");
-
-            DAO dao = new DAOImpl();
-
-            for (Room room : requestedRooms) {
-                dao.save(room);
-            }
-        }
-
-        return requestedRooms;
-    }
-
-    public Room[] requestRooms2(int price, int persons, String city, String hotel) {
-        int counter = 0;
-        for (API api : apis) {
-            if (api.findRooms(price, persons, city, hotel).length != 0) {
-                counter += api.findRooms(price, persons, city, hotel).length;
-            }
-        }
-
-        if (counter == 0) {
-            System.out.println("Sorry but rooms with the requested criteria have not been found.");
-            return null;
-        }
-
-        Room[] requestedRooms = new Room[counter];
+        Room[] result = new Room[0];
         DAO dao = new DAOImpl();
-        counter = 0;
-
-
         for (API api : apis) {
-            if (api.findRooms(price, persons, city, hotel).length != 0) {
-                for (Room room : api.findRooms(price, persons, city, hotel)) {
-                    requestedRooms[counter++] = room;
+            Room[] foundRooms = api.findRooms(price, persons, city, hotel);
+            if (foundRooms.length > 0) {
+                for (Room room : foundRooms) {
+                    result = Arrays.copyOf(result, result.length + 1);
+                    result[result.length - 1] = room;
                     dao.save(room);
                 }
             }
         }
-        System.out.println(requestedRooms.length + " rooms With the requested criteria were found.");
-        return requestedRooms;
+        if (result.length == 0) {
+            System.out.println("Sorry but rooms with the requested criteria have not been found.");
+        } else {
+            System.out.println("\n" + result.length + " rooms With the requested criteria were found.");
+        }
+        return result;
     }
 
     public Room[] check(API api1, API api2) {
-
         Room[] arrayApi1 = api1.getAllRooms();
         Room[] arrayApi2 = api2.getAllRooms();
-        Room[] tempRooms = new Room[arrayApi1.length + arrayApi2.length];
-        int index = 0;
-
-        for (int i = 0; i < arrayApi1.length; i++) {
-            Room[] equalRooms = DAO.findEqualRooms(arrayApi1[i], arrayApi2);
-            if (equalRooms.length != 0) {
-                tempRooms[index] = arrayApi1[i];
-                System.arraycopy(equalRooms, 0, tempRooms, index + 1, equalRooms.length);
-                index += equalRooms.length + 1;
+        Room[] result = new Room[0];
+        for (Room room1 : arrayApi1) {
+            for (Room room2 : arrayApi2) {
+                if (room1.equals(room2)) {
+                    result = Arrays.copyOf(result, result.length + 1);
+                    result[result.length - 1] = room1;
+                }
             }
         }
-
-        Room[] result;
-
-        if (index == 0) {
-            System.out.println("0 matches has been found.");
-            return new Room[0];
-        } else {
-            result = new Room[index];
-        }
-
-        for (int i = index - 1; i >= 0; i--) {
-            result[i] = tempRooms[i];
-        }
+        System.out.println("\n" + result.length + " matches have been found.");
         return result;
     }
 

@@ -1,5 +1,6 @@
 package module05.homework;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class GoogleAPI implements API {
@@ -21,30 +22,15 @@ public class GoogleAPI implements API {
 
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
-
         Room requestedRoom = new Room(0L, price, persons, new Date(), hotel, city);
-        Room[] tempRooms = new Room[rooms.length];
-        int index = 0;
-
-        for (int i = 0; i < rooms.length; i++) {
-            if (rooms[i].equals(requestedRoom) && rooms[i].equalsHotelName(requestedRoom)) {
-                tempRooms[index] = rooms[i];
-                index++;
+        Room[] result = new Room[0];
+        for (Room room : rooms) {
+            if (room.equals(requestedRoom) && hotel.equals(room.getHotelName())){
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = room;
             }
         }
-
-        Room[] foundRooms;
-
-        if (index == 0) {
-            return new Room[0];
-        } else {
-            foundRooms = new Room[index];
-        }
-
-        for (int i = index - 1; i >= 0; i--) {
-            foundRooms[i] = tempRooms[i];
-        }
-        return foundRooms;
+        return result;
     }
 
 }

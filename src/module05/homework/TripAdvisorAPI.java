@@ -1,5 +1,6 @@
 package module05.homework;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class TripAdvisorAPI implements API {
@@ -21,10 +22,15 @@ public class TripAdvisorAPI implements API {
 
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
-
         Room requestedRoom = new Room(0L, price, persons, new Date(), hotel, city);
-
-        return  DAO.findEqualRooms(requestedRoom, rooms);
+        Room[] result = new Room[0];
+        for (Room room : rooms) {
+            if (room.equals(requestedRoom) && hotel.equals(room.getHotelName())){
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = room;
+            }
+        }
+        return result;
     }
 
 }
