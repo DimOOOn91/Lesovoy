@@ -1,6 +1,5 @@
 package module05.homework;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Room {
@@ -10,7 +9,6 @@ public class Room {
     private Date dateAvailableFrom;
     private String hotelName;
     private String cityName;
-
 
     public Room(long id, int price, int persons, Date dateAvailableFrom, String hotelName, String cityName) {
         this.id = id;
@@ -92,9 +90,12 @@ public class Room {
 
         Room room = (Room) o;
 
-        if (price != room.price) return false;
-        if (persons != room.persons) return false;
-        return cityName != null ? cityName.equals(room.cityName) : room.cityName == null;
+        if (price > room.price) return false;
+        if (persons > room.persons) return false;
+
+        String roomCityName = room.cityName;
+        return roomCityName != null && !roomCityName.isEmpty() ? this.cityName.equals(roomCityName) :
+                this.cityName == null || roomCityName.isEmpty();
 
     }
 
