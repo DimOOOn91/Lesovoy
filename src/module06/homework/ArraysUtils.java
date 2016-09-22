@@ -67,14 +67,17 @@ public final class ArraysUtils {
     }
 
     public static int secondLargest(int[] array) {
-        int max = max(array);
-        int secondLargest = min(array);
+        int[] chackArray = {array[0], array[1]};
         for (int item : array) {
-            if (item > secondLargest && item < max) {
-                secondLargest = item;
+            if (item > chackArray[1]) {
+                chackArray[0] = chackArray[1];
+                chackArray[1] = item;
+            }
+            else if (item > chackArray[0] && item < chackArray[1] || chackArray[0] == chackArray[1]) {
+                chackArray[0] = item;
             }
         }
-        return secondLargest;
+        return chackArray[0];
     }
 
     public static int[] reverse(int[] array) {
@@ -99,6 +102,5 @@ public final class ArraysUtils {
         }
         return result;
     }
-
 
 }

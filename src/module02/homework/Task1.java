@@ -151,11 +151,11 @@ public class Task1 {
 //        System.out.println("Multiplication of all items in the Double array is: " + multiplication(arrayDouble));
 //        System.out.println("Modulus of the first and the last item in the Integer array is: " + modulus(arrayInt));
 //        System.out.println("Modulus of the first and the last item in the Double array is: " + modulus(arrayDouble));
-//        System.out.println("Second largest item in the Integer array is: " + secondLargest(arrayInt));
+        System.out.println("Second largest item in the Integer array is: " + ArraysUtils.secondLargest(arrayInt));
 //        System.out.println("Second largest item in the Double array is: " + secondLargest(arrayDouble));
 
 //        System.out.println("module 6:");
 //        System.out.println("Reverse Integer array: " + Arrays.toString(ArraysUtils.reverse(arrayInt)));
-        System.out.println("Even of Integer array are below:" + "\n" + Arrays.toString(ArraysUtils.findEvenElements(arrayInt)));
+//        System.out.println("Even of Integer array are below:" + "\n" + Arrays.toString(ArraysUtils.findEvenElements(arrayInt)));
     }
 }
