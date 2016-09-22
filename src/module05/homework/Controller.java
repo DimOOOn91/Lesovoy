@@ -3,22 +3,22 @@ package module05.homework;
 import java.util.Arrays;
 
 public class Controller {
-    private API googleAPI = new GoogleAPI();
-    private API bookingComAPI = new BookingComAPI();
-    private API tripAdvisorAPI = new TripAdvisorAPI();
-    API[] apis = new API[]{googleAPI, bookingComAPI, tripAdvisorAPI};
+
+    private API[] apis;
+
+    public Controller() {
+        this.apis = new API[]{new GoogleAPI(), new BookingComAPI(), new TripAdvisorAPI()};
+    }
 
     public Room[] requestRooms(int price, int persons, String city, String hotel) {
         Room[] result = new Room[0];
         DAO dao = new DAOImpl();
         for (API api : apis) {
             Room[] foundRooms = api.findRooms(price, persons, city, hotel);
-            if (foundRooms.length > 0) {
-                for (Room room : foundRooms) {
-                    result = Arrays.copyOf(result, result.length + 1);
-                    result[result.length - 1] = room;
-                    dao.save(room);
-                }
+            for (Room room : foundRooms) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = room;
+                dao.save(room);
             }
         }
         if (result.length == 0) {
