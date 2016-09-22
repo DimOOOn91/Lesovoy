@@ -67,17 +67,18 @@ public final class ArraysUtils {
     }
 
     public static int secondLargest(int[] array) {
-        int[] chackArray = {array[0], array[1]};
+        int max = array[0];
+        int secondLargest = Integer.MIN_VALUE;
         for (int item : array) {
-            if (item > chackArray[1]) {
-                chackArray[0] = chackArray[1];
-                chackArray[1] = item;
+            if (item > max) {
+                secondLargest = max;
+                max = item;
             }
-            else if (item > chackArray[0] && item < chackArray[1] || chackArray[0] == chackArray[1]) {
-                chackArray[0] = item;
+            if (secondLargest < item && item < max) {
+                secondLargest = item;
             }
         }
-        return chackArray[0];
+        return secondLargest;
     }
 
     public static int[] reverse(int[] array) {
