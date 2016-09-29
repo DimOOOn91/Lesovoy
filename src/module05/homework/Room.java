@@ -76,15 +76,7 @@ public class Room {
         return result;
     }
 
-    public boolean equalsHotelName(Room room) {
-        if (room.hotelName != null && hotelName != room.hotelName) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean equals(Object o) {
+    public boolean checkForEqual(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -96,6 +88,23 @@ public class Room {
         String roomCityName = room.cityName;
         return roomCityName != null && !roomCityName.isEmpty() ? this.cityName.equals(roomCityName) :
                 this.cityName == null || roomCityName.isEmpty();
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Room room = (Room) o;
+
+        if (id != room.id) return false;
+        if (price != room.price) return false;
+        if (persons != room.persons) return false;
+        if (dateAvailableFrom != null ? !dateAvailableFrom.equals(room.dateAvailableFrom) : room.dateAvailableFrom != null)
+            return false;
+        if (hotelName != null ? !hotelName.equals(room.hotelName) : room.hotelName != null) return false;
+        return cityName != null ? cityName.equals(room.cityName) : room.cityName == null;
 
     }
 

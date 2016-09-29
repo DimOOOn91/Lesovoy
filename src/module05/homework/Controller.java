@@ -35,7 +35,7 @@ public class Controller {
         Room[] result = new Room[0];
         for (Room room1 : arrayApi1) {
             for (Room room2 : arrayApi2) {
-                if (room1.equals(room2)) {
+                if (room1.checkForEqual(room2)) {
                     result = Arrays.copyOf(result, result.length + 1);
                     result[result.length - 1] = room1;
                 }
