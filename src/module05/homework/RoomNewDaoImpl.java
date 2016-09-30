@@ -1,18 +1,17 @@
 package module05.homework;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
-public class DAOImplNew implements DAONew {
+public class RoomNewDaoImpl implements RoomNewDao {
 
-    private ArrayList<Room> dataBase = new ArrayList<>();
-
+    private static List<Room> dataBase = new ArrayList<>();
 
     @Override
     public boolean save(Room room) {
-        if (!checkUnique(room)) {
-            System.out.println("Your room is already in data base please update it if it is necessary.");
-            return false;
+        if (isContainInDB(room)) {
+            update(room);
+            return true;
         }
         if (!checkPlaceInList()) {
             System.out.println("You data base is full, please delete some room!");
@@ -23,8 +22,8 @@ public class DAOImplNew implements DAONew {
         return true;
     }
 
-    private boolean checkUnique(Room room) {
-        return findById(room.getId()) == null;
+    private boolean isContainInDB(Room room) {
+        return findById(room.getId()) != null;
     }
 
     private boolean checkPlaceInList() {
@@ -34,28 +33,31 @@ public class DAOImplNew implements DAONew {
 
     @Override
     public boolean delete(Room room) {
-        Room roomInDB = findById(room.getId());
-        if (roomInDB == null) {
-            System.out.println(room + "has not been found.");
-            return false;
+        if (isContainInDB(room)) {
+            dataBase.remove(room);
+            System.out.println(room + "was deleted successfully!");
+            return true;
         }
-        dataBase.remove(roomInDB);
-        System.out.println(room + "was deleted successfully!");
-        return true;
+        System.out.println(room + "has not been found.");
+        return false;
     }
 
     @Override
     public boolean update(Room room) {
-        Room roomInDB = findById(room.getId());
-        if (roomInDB == null) {
+        int index = getIndexInDB(room);
+        if (index < 0) {
             System.out.println(room + "has not been found.");
             return false;
         }
-        int index = dataBase.indexOf(roomInDB);
-        dataBase.remove(index);
-        dataBase.add(index, room);
+        dataBase.set(index, room);
         System.out.println("Your room has been updated successfully.");
         return true;
+    }
+
+    private int getIndexInDB(Room room) {
+        Room roomInDB = findById(room.getId());
+        int result = dataBase.indexOf(roomInDB);
+        return result;
     }
 
     @Override
@@ -71,13 +73,7 @@ public class DAOImplNew implements DAONew {
 
     @Override
     public Room[] getAll() {
-        Room[] result = new Room[0];
-        for (Room room : dataBase) {
-            result = Arrays.copyOf(result, result.length + 1);
-            result[result.length - 1] = room;
-        }
-//        return (Room[]) dataBase.toArray();
-        return result;
+        return dataBase.toArray(new Room[dataBase.size()]);
     }
 
 

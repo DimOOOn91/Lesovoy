@@ -2,7 +2,7 @@ package module05.homework;
 
 public class ControllerNew {
 
-    private DAOImplNew dao = new DAOImplNew();
+    private RoomNewDao dao = new RoomNewDaoImpl();
 
     public Room save(Room room) {
         dao.save(room);

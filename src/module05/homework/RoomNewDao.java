@@ -2,7 +2,7 @@ package module05.homework;
 
 import java.util.ArrayList;
 
-public interface DAONew {
+public interface RoomNewDao {
 
     boolean save(Room room);
 
