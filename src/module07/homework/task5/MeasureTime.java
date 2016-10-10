@@ -57,7 +57,6 @@ public class MeasureTime {
         finishAL = System.nanoTime();
         System.out.println("------" + (finishLL - startLL) + "/" + (finishAL - startAL));
 
-
         System.out.println("\nGET:");
         System.out.println("--Integers:");
         startLL = System.nanoTime();
