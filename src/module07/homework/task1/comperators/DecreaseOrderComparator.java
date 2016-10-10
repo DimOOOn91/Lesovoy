@@ -1,6 +1,6 @@
-package module07.homework.comperators;
+package module07.homework.task1.comperators;
 
-import module07.homework.Order;
+import module07.homework.task1.Order;
 
 import java.util.Comparator;
 

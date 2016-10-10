@@ -1,15 +1,15 @@
-package module07.homework.refactoring.module5;
+package module07.homework.task4.module5;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 public class GoogleAPI implements API {
 
-    private static List<Room> rooms = new ArrayList<>();
+    private static List<Room> rooms;
 
     public GoogleAPI() {
+        rooms = new ArrayList<>();
         rooms.add(new Room(31111L, 400, 2, new Date("2016/09/29 12:00:00"), "Flagman", "Lvov"));
         rooms.add(new Room(31112L, 320, 2, new Date("2016/09/18 12:00:00"), "Dolphin", "Zatoka"));
         rooms.add(new Room(31113L, 250, 2, new Date("2016/09/18 12:00:00"), "Mukachevo", "Mukachevo"));

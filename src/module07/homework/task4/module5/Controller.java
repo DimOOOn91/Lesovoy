@@ -1,24 +1,24 @@
-package module07.homework.refactoring.module5;
+package module07.homework.task4.module5;
 
 import java.util.*;
 
 public class Controller {
 
-    private Map<String, API> apis;
+    private List<API> apis;
 
     public Controller() {
-        this.apis = new TreeMap<>();
-        apis.put("google", new GoogleAPI());
-        apis.put("bookingCom", new BookingComAPI());
-        apis.put("tripAdvisor", new TripAdvisorAPI());
+        this.apis = new ArrayList<>();
+        apis.add(new GoogleAPI());
+        apis.add(new BookingComAPI());
+        apis.add(new TripAdvisorAPI());
     }
 
     public List<Room> requestRooms(int price, int persons, String city, String hotel) {
         List<Room> result = new ArrayList<>();
         DAO dao = new DAOImpl();
-        Iterator<Map.Entry<String, API>> apisIterator = apis.entrySet().iterator();
+        Iterator<API> apisIterator = apis.iterator();
         while (apisIterator.hasNext()){
-            API api = apisIterator.next().getValue();
+            API api = apisIterator.next();
             List<Room> foundRooms = api.findRooms(price, persons, city, hotel);
             result.addAll(foundRooms);
             result.forEach(dao::save);
@@ -41,7 +41,7 @@ public class Controller {
         return result;
     }
 
-    public Map<String, API> getApis() {
+    public List<API> getApis() {
         return apis;
     }
 }

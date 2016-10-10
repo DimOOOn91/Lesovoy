@@ -1,6 +1,6 @@
-package module07.homework;
+package module07.homework.task1;
 
-public class Order implements Comparable<Order>{
+public class Order implements Comparable<Order> {
     private long id;
     private int price;
     private Currency currency;
@@ -19,13 +19,27 @@ public class Order implements Comparable<Order>{
 
     @Override
     public int compareTo(Order o) {
-        int result = this.getPrice() - o.getPrice();
-        if (result == 0) {
-            if (!this.equals(o)) {
-                return -1;
-            }
+        int result = Long.compare(this.id, o.id);
+        if (result != 0) {
+            return result;
         }
-        return result;
+        result = Integer.compare(this.price, o.price);
+        if (result != 0) {
+            return result;
+        }
+        result = this.currency.compareTo(o.currency);
+        if (result != 0) {
+            return result;
+        }
+        result = this.itemName.compareTo(o.itemName);
+        if (result != 0) {
+            return result;
+        }
+        result = this.shopIdentificator.compareTo(o.shopIdentificator);
+        if (result != 0) {
+            return result;
+        }
+        return this.user.compareTo(o.user);
     }
 
     @Override

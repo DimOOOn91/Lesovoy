@@ -1,4 +1,9 @@
-package module07.homework;
+package module07.homework.task3;
+
+
+import module07.homework.task1.Currency;
+import module07.homework.task1.Order;
+import module07.homework.task1.User;
 
 import java.util.*;
 
@@ -15,7 +20,7 @@ public class MainSet {
         User user9 = new User(9L, "Stanislav", "Minin", "Rovno", 25000);
         User user10 = new User(10L, "Valentyn", "Petrov", "Odessa", 50);
 
-        TreeSet<Order> orders = new TreeSet<>();
+        Set<Order> orders = new TreeSet<>();
 
         orders.add(new Order(1L, 1000, Currency.USD, "Guitar", "Nota", user1));
         orders.add(new Order(2L, 1500, Currency.UAH, "Hoodie", "Snowborder", user2));
@@ -29,6 +34,7 @@ public class MainSet {
         orders.add(new Order(10L, 2500, Currency.UAH, "Snickers", "Novus", user10));
         orders.add(new Order(10L, 2500, Currency.UAH, "Snickers", "Novus", user10));
 
+
         System.out.println(orders);
 
 
@@ -36,18 +42,36 @@ public class MainSet {
         System.out.println(isContain(orders, "Petrov"));
 
         System.out.println("\nPrint Order with largest price using only one set method - get:");
-        System.out.println(orders.last());
+        System.out.println(getOrderWithLargestPrice(orders));
 
         System.out.println("\nDelete orders where currency is USD using Iterator:");
-        Iterator<Order> ordersIterator = orders.iterator();
-        removeOrdersByCurrency(ordersIterator, Currency.USD);
+
+        removeOrdersByCurrency(orders, Currency.USD);
 
         System.out.println(orders);
 
 
     }
 
-    public static void removeOrdersByCurrency(Iterator<Order> iterator, Currency currency) {
+    public static Order getOrderWithLargestPrice (Set<Order> orders) {
+        if (orders.isEmpty()) {
+            return null;
+        }
+        Iterator<Order> iterator = orders.iterator();
+        Order result = iterator.next();
+        while (iterator.hasNext()) {
+            Order order = iterator.next();
+            int price = order.getPrice();
+            if (result.getPrice() < price) {
+                result = order;
+            }
+        }
+        return result;
+    }
+
+
+    public static void removeOrdersByCurrency(Set<Order> orders, Currency currency) {
+        Iterator<Order> iterator = orders.iterator();
         while (iterator.hasNext()) {
             Order order = iterator.next();
             if (order.getCurrency() == currency) {
@@ -56,10 +80,10 @@ public class MainSet {
         }
     }
 
-    public static boolean isContain(Set<Order> set, String lastName) {
-        for (Order order : set) {
+    public static boolean isContain(Set<Order> orders, String lastName) {
+        for (Order order : orders) {
             User user = order.getUser();
-            if (user.getLastName() == lastName) {
+            if (user.getLastName().equals(lastName)) {
                 return true;
             }
         }

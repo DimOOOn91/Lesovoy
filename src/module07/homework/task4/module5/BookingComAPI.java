@@ -1,15 +1,15 @@
-package module07.homework.refactoring.module5;
+package module07.homework.task4.module5;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 public class BookingComAPI implements API {
 
-    private static List<Room> rooms = new ArrayList<>();
+    private static List<Room> rooms;
 
     public BookingComAPI() {
+        rooms = new ArrayList<>();
         rooms.add(new Room(11111L, 400, 2, new Date("2016/09/29 12:00:00"), "Flagman", "Lvov"));
         rooms.add(new Room(11112L, 500, 3, new Date("2016/09/20 12:00:00"), "Chernomorec", "Odessa"));
         rooms.add(new Room(11113L, 480, 2, new Date("2016/10/04 12:00:00"), "Riviera", "Kiev"));

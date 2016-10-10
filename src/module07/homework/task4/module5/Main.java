@@ -1,8 +1,6 @@
-package module07.homework.refactoring.module5;
+package module07.homework.task4.module5;
 
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 public class Main {
 
@@ -10,22 +8,34 @@ public class Main {
 
         Controller controller = new Controller();
 
-        controller.requestRooms(400, 2, "Lvov", "Flagman");
-        System.out.println("\n-------------\n");
+//        controller.requestRooms(400, 2, "Lvov", "Flagman");
+//        System.out.println("\n-------------\n");
+//
+//        controller.requestRooms(280, 1, "Nikolaev", "Dobrynja");
+//        System.out.println("\n-------------\n");
+//
+//        controller.requestRooms(320, 2, "Lvov", "Flagman");
+//        System.out.println("\n-------------\n");
+//
+//        controller.requestRooms(400, 2, "", "Flagman");
+//        System.out.println("\n-------------\n");
+//        System.out.println("-------------\n");
 
-        controller.requestRooms(280, 1, "Nikolaev", "Dobrynja");
-        System.out.println("\n-------------\n");
-
-        controller.requestRooms(320, 2, "Lvov", "Flagman");
-        System.out.println("\n-------------\n");
-
-        controller.requestRooms(400, 2, "", "Flagman");
-        System.out.println("\n-------------\n");
-        System.out.println("-------------\n");
-
-        API bookingCom = controller.getApis().get("bookingCom");
-        API google = controller.getApis().get("google");
-        API tripAdvisor = controller.getApis().get("tripAdvisor");
+        API bookingCom  = new BookingComAPI();
+        API google = new GoogleAPI();
+        API tripAdvisor = new TripAdvisorAPI();
+//
+//        List<API> apis = controller.getApis();
+//
+//        for (API api : apis) {
+//            if (api instanceof BookingComAPI) {
+//                bookingCom = api;
+//            } else if (api instanceof TripAdvisorAPI) {
+//                tripAdvisor = api;
+//            } else if (api instanceof GoogleAPI) {
+//                google = api;
+//            }
+//        }
 
         System.out.println(controller.check(bookingCom, google));
         System.out.println("-------------\n");
