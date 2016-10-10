@@ -1,6 +1,5 @@
 package module08.homework;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class DAOImpl<T> implements DAO<T> {
 
     @Override
     public T save(T element) {
-        if (element != null) {
+        if (element != null && !dataBase.contains(element)) {
             dataBase.add(element);
             return element;
         }
@@ -40,11 +39,10 @@ public class DAOImpl<T> implements DAO<T> {
         } else {
             List<T> notIdentified = new LinkedList<T>();
             for (T element : list) {
-                if (dataBase.contains(element)) {
-                    delete(element);
-                } else {
+                if (!dataBase.contains(element)) {
                     notIdentified.add(element);
                 }
+                delete(element);
             }
             System.out.println("Following elements have not been found in the DB:\n" + notIdentified);
         }
@@ -62,14 +60,16 @@ public class DAOImpl<T> implements DAO<T> {
 
     @Override
     public void saveAll(List<T> list) {
-        list = removeNulls(list);
-        if (list.isEmpty()) {
-            System.out.println("Your list is empty!");
+        if (list.isEmpty() || dataBase.containsAll(list)) {
             return;
         }
-        dataBase.addAll(list);
+        for (T element : list) {
+            save(element);
+            save(element);
+        }
     }
 
+    @Override
     public List<T> getDataBase() {
         return dataBase;
     }
