@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        DAO<String> dao = new DAOImpl<>();
+       /* AbstractDAO<String> dao = new DAO<>();
         dao.save(null);
         dao.save("AAA");
         dao.save(null);
@@ -32,7 +32,7 @@ public class Main {
         list.add("RRR");
 
         dao.deleteAll(list);
-        System.out.println(dao);
+        System.out.println(dao);*/
 
 
     }
