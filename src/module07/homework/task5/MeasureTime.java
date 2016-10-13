@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MeasureTime {
 
-    private static final int ONE = 10000;
+    private static final int ONE = 100000;
 
     public static void main(String[] args) {
 

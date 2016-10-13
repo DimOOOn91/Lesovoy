@@ -2,6 +2,7 @@ package module07.homework.task2;
 
 import module07.homework.task1.Order;
 import module07.homework.task1.User;
+import module07.homework.task1.Currency;
 import module07.homework.task1.comperators.ComperatorByItemShopAndCity;
 import module07.homework.task1.comperators.DecreaseOrderComparator;
 import module07.homework.task1.comperators.IncreaseOrderComparator;
@@ -23,17 +24,17 @@ public class MainList {
 
         List<Order> list = new ArrayList<>();
 
-        list.add(new Order(1L, 1000, module07.homework.task1.Currency.USD, "Guitar", "Nota", user1));
-        list.add(new Order(2L, 1500, module07.homework.task1.Currency.UAH, "Hoodie", "Snowborder", user2));
-        list.add(new Order(3L, 300, module07.homework.task1.Currency.USD, "Sneakers", "Extrem Style", user3));
-        list.add(new Order(4L, 400, module07.homework.task1.Currency.UAH, "Strings", "Nota", user4));
-        list.add(new Order(5L, 500, module07.homework.task1.Currency.USD, "Trip", "TUI", user5));
-        list.add(new Order(6L, 500, module07.homework.task1.Currency.USD, "Bumper", "Hyundai Auto Center", user6));
-        list.add(new Order(7L, 400, module07.homework.task1.Currency.USD, "Bicycle wheel", "Extrem Style", user7));
-        list.add(new Order(8L, 300, module07.homework.task1.Currency.USD, "Sneakers", "Extrem Style", user8));
-        list.add(new Order(9L, 1580, module07.homework.task1.Currency.UAH, "Trousers", "Voronin", user9));
-        list.add(new Order(10L, 2500, module07.homework.task1.Currency.UAH, "Snickers", "Novus", user10));
-        list.add(new Order(10L, 2500, module07.homework.task1.Currency.UAH, "Snickers", "Novus", user10));
+        list.add(new Order(1L, 1000, Currency.USD, "Guitar", "Nota", user1));
+        list.add(new Order(2L, 1500, Currency.UAH, "Hoodie", "Snowborder", user2));
+        list.add(new Order(3L, 300, Currency.USD, "Sneakers", "Extrem Style", user3));
+        list.add(new Order(4L, 400, Currency.UAH, "Strings", "Nota", user4));
+        list.add(new Order(5L, 500, Currency.USD, "Trip", "TUI", user5));
+        list.add(new Order(6L, 500, Currency.USD, "Bumper", "Hyundai Auto Center", user6));
+        list.add(new Order(7L, 400, Currency.USD, "Bicycle wheel", "Extrem Style", user7));
+        list.add(new Order(8L, 300, Currency.USD, "Sneakers", "Extrem Style", user8));
+        list.add(new Order(9L, 1580, Currency.UAH, "Trousers", "Voronin", user9));
+        list.add(new Order(10L, 2500, Currency.UAH, "Snickers", "Novus", user10));
+        list.add(new Order(10L, 2500, Currency.UAH, "Snickers", "Novus", user10));
 
         System.out.println("Decrease Sort:");
         list.sort(new DecreaseOrderComparator());
@@ -63,7 +64,7 @@ public class MainList {
 
         System.out.println("Separate list for USD and UAH:");
 
-        Map<module07.homework.task1.Currency, List<Order>> separateListByCurrency = separateListByCurrency(list);
+        Map<Currency, List<Order>> separateListByCurrency = separateListByCurrency(list);
 
         System.out.println(separateListByCurrency);
 
@@ -119,10 +120,10 @@ public class MainList {
         }*/
     }
 
-    public static Map<module07.homework.task1.Currency, List<Order>> separateListByCurrency(List<Order> orders) {
-        Map<module07.homework.task1.Currency, List<Order>> result = new HashMap<>();
+    public static Map<Currency, List<Order>> separateListByCurrency(List<Order> orders) {
+        Map<Currency, List<Order>> result = new HashMap<>();
         for (Order order : orders) {
-            module07.homework.task1.Currency currency = order.getCurrency();
+            Currency currency = order.getCurrency();
             if (result.containsKey(currency)) {
                 result.get(currency).add(order);
             } else {
