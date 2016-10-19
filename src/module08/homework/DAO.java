@@ -13,17 +13,22 @@ public class DAO<T extends Identity> implements AbstractDAO<T> {
 
     @Override
     public T save(T element) {
-        if (element != null && !dataBase.contains(element)) {
-            dataBase.add(element);
-            return element;
+        if (element == null || dataBase.contains(element)) {
+            System.out.println("This User cannot be saved");
+            return null;
         }
-        return null;
+        dataBase.add(element);
+        System.out.println("Following element was saves successfully: " + element);
+        return element;
     }
 
     @Override
     public void delete(T element) {
         if (dataBase.contains(element)) {
             dataBase.remove(element);
+            System.out.println("Following element was deleted successfully: " + element);
+        } else {
+            System.out.println(element + " has not been found.");
         }
     }
 
@@ -36,15 +41,11 @@ public class DAO<T extends Identity> implements AbstractDAO<T> {
         }
         if (dataBase.containsAll(list)) {
             dataBase.removeAll(list);
-        } else {
-            List<T> notIdentified = new LinkedList<T>();
-            for (T element : list) {
-                if (!dataBase.contains(element)) {
-                    notIdentified.add(element);
-                }
-                delete(element);
-            }
-            System.out.println("Following elements have not been found in the DB:\n" + notIdentified);
+            System.out.println("All elements in the list were deleted successfully.");
+            return;
+        }
+        for (T element : list) {
+            delete(element);
         }
     }
 
@@ -60,42 +61,32 @@ public class DAO<T extends Identity> implements AbstractDAO<T> {
 
     @Override
     public void saveAll(List<T> list) {
-        if (list.isEmpty() || dataBase.containsAll(list)) {
+        if (dataBase.containsAll(list)) {
             return;
         }
         for (T element : list) {
-            save(element);
             save(element);
         }
     }
 
     @Override
     public void deleteById(long id) {
-
         if (id == 0) {
             System.out.println("Please check the ID.");
             return;
         }
-        Identity identity = new Identity() {
-            @Override
-            public long getId() {
-                return id;
-            }
-        };
-        if (dataBase.get(0).getClass().isAssignableFrom(identity.getClass())) {
-            for (T element : dataBase) {
-                if (element.getId() == id) {
-                    dataBase.remove(element);
-                    return;
-                }
+        for (T element : dataBase) {
+            if (element.getId() == id) {
+                delete(element);
+                return;
             }
         }
-        System.out.println("This method cannot be used for your elements.");
     }
 
     @Override
     public T get(long id) {
         if (id == 0) {
+            System.out.println("ID cannot be 0.");
             return null;
         }
         for (T element : dataBase) {
@@ -103,6 +94,7 @@ public class DAO<T extends Identity> implements AbstractDAO<T> {
                 return element;
             }
         }
+        System.out.println("Element with id " + id + " has not been found");
         return null;
     }
 

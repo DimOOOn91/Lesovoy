@@ -8,6 +8,7 @@ import module07.homework.task1.comperators.DecreaseOrderComparator;
 import module07.homework.task1.comperators.IncreaseOrderComparator;
 
 import java.util.*;
+import java.util.function.Function;
 
 public class MainList {
     public static void main(String[] args) {
