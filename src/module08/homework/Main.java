@@ -1,8 +1,6 @@
 package module08.homework;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -50,14 +48,14 @@ public class Main {
         System.out.println(dao + "\n");
 
         //check "saveAll" method
-        List<Test> testList = new LinkedList<>();
-        testList.add(new Test(6));
-        testList.add(new Test(4));
-        testList.add(new Test(7));
-        testList.add(new Test(2));
-        testList.add(null);
+        Set<Test> testSet = new HashSet<>();
+        testSet.add(new Test(6));
+        testSet.add(new Test(4));
+        testSet.add(new Test(7));
+        testSet.add(new Test(2));
+        testSet.add(null);
 
-        dao.saveAll(testList);
+        dao.saveAll(testSet);
         System.out.println(dao + "\n");
 
         //check "delete" method
@@ -67,9 +65,9 @@ public class Main {
         System.out.println(dao + "\n");
 
         //check "deleteAll" method
-        testList.add(new Test(10));
-        testList.add(new Test(15));
-        dao.deleteAll(testList);
+        testSet.add(new Test(10));
+        testSet.add(new Test(15));
+        dao.deleteAll(testSet);
         System.out.println(dao + "\n");
 
         //check "deleteById" method
@@ -104,12 +102,12 @@ public class Main {
         System.out.println(userDAO + "\n");
 
         //check "saveAll" method for UserDAO
-        List<User> newUsersList = new LinkedList<>();
-        newUsersList.add(user5);
-        newUsersList.add(user6);
-        newUsersList.add(null);
+        Set<User> newUsersSet = new HashSet<>();
+        newUsersSet.add(user5);
+        newUsersSet.add(user6);
+        newUsersSet.add(null);
 
-        userDAO.saveAll(newUsersList);
+        userDAO.saveAll(newUsersSet);
         System.out.println(userDAO + "\n");
 
         //check "delete" method for UserDAO
@@ -119,9 +117,9 @@ public class Main {
         System.out.println(userDAO + "\n");
 
         //check "deleteAll" method for UserDAO
-        newUsersList.add(user7);
-        newUsersList.add(user8);
-        userDAO.deleteAll(newUsersList);
+        newUsersSet.add(user7);
+        newUsersSet.add(user8);
+        userDAO.deleteAll(newUsersSet);
         System.out.println(userDAO + "\n");
 
         //check "deleteById" method for UserDAO

@@ -1,17 +1,17 @@
 package module08.homework;
 
-import java.util.List;
+import java.util.Set;
 
 public interface AbstractDAO<T> {
     T save(T element);
 
     void delete(T element);
 
-    void deleteAll(List<T> list);
+    void deleteAll(Set<T> list);
 
-    void saveAll(List<T> list);
+    void saveAll(Set<T> list);
 
-    List<T> getDataBase();
+    Set<T> getDataBase();
 
     void deleteById(long id);
 

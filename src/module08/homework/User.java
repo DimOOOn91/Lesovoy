@@ -1,6 +1,6 @@
 package module08.homework;
 
-public class User implements Identity {
+public class User implements Identity, Comparable<User> {
     private long id;
     private String name;
     private static int counter = 0;
@@ -38,5 +38,10 @@ public class User implements Identity {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(User user) {
+        return Long.compare(this.getId(), user.getId());
     }
 }

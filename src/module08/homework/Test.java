@@ -1,6 +1,6 @@
 package module08.homework;
 
-public class Test implements Identity {
+public class Test implements Identity, Comparable<Test> {
     long id;
 
     public Test(long id) {
@@ -31,5 +31,10 @@ public class Test implements Identity {
         sb.append("id=").append(id);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(Test test) {
+        return Long.compare(this.getId(), test.getId());
     }
 }

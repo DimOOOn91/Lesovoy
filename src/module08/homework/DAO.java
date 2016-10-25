@@ -1,20 +1,19 @@
 package module08.homework;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class DAO<T extends Identity> implements AbstractDAO<T> {
 
-    private List<T> dataBase;
+    private Set<T> dataBase;
 
     public DAO() {
-        dataBase = new LinkedList<>();
+        dataBase = new HashSet<T>();
     }
 
     @Override
     public T save(T element) {
-        if (element == null || dataBase.contains(element)) {
-            System.out.println("This User cannot be saved");
+        if (element == null) {
+            System.out.println("The element is null");
             return null;
         }
         dataBase.add(element);
@@ -24,16 +23,18 @@ public class DAO<T extends Identity> implements AbstractDAO<T> {
 
     @Override
     public void delete(T element) {
-        if (dataBase.contains(element)) {
-            dataBase.remove(element);
-            System.out.println("Following element was deleted successfully: " + element);
-        } else {
-            System.out.println(element + " has not been found.");
-        }
+//        if (dataBase.contains(element)) {
+//            dataBase.remove(element);
+//            System.out.println("Following element was deleted successfully: " + element);
+//        } else {
+//            System.out.println(element + " has not been found.");
+//        }
+        dataBase.remove(element);
+        System.out.println("Following element was deleted successfully: " + element);
     }
 
     @Override
-    public void deleteAll(List<T> list) {
+    public void deleteAll(Set<T> list) {
         list = removeNulls(list);
         if (list.isEmpty()) {
             System.out.println("Your list is empty!");
@@ -49,8 +50,8 @@ public class DAO<T extends Identity> implements AbstractDAO<T> {
         }
     }
 
-    private List<T> removeNulls(List<T> list) {
-        List<T> result = new LinkedList<>();
+    private Set<T> removeNulls(Set<T> list) {
+        Set<T> result = new HashSet<T>();
         for (T element : list) {
             if (element != null) {
                 result.add(element);
@@ -60,7 +61,7 @@ public class DAO<T extends Identity> implements AbstractDAO<T> {
     }
 
     @Override
-    public void saveAll(List<T> list) {
+    public void saveAll(Set<T> list) {
         if (dataBase.containsAll(list)) {
             return;
         }
@@ -99,7 +100,7 @@ public class DAO<T extends Identity> implements AbstractDAO<T> {
     }
 
     @Override
-    public List<T> getDataBase() {
+    public Set<T> getDataBase() {
         return dataBase;
     }
 
