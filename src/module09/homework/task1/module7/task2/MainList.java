@@ -7,7 +7,9 @@ import module09.homework.task1.module7.task1.Order;
 import module09.homework.task1.module7.task1.User;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class MainList {
@@ -39,15 +41,19 @@ public class MainList {
 
         System.out.println("Sort list by Order price in decrease order:");
         List<Order> decreaseSortedOrders = orders.stream()
-                .sorted((o1, o2) -> o2.getPrice() - o1.getPrice())
+                .sorted((o1, o2) -> Integer.compare(o2.getPrice(), o1.getPrice()))
                 .collect(Collectors.toList());
         System.out.println(decreaseSortedOrders);
 
         System.out.println("Sort list by Order price in increase order AND User city:");
         List<Order> increaseSortedOrders = orders.stream()
-                .sorted((o1, o2) -> o1.getPrice() != o2.getPrice()
-                        ? Integer.compare(o1.getPrice(), o2.getPrice())
-                        : o1.getUser().getCity().compareTo(o2.getUser().getCity()))
+                .sorted((o1, o2) -> {
+                    int res = Integer.compare(o1.getPrice(), o2.getPrice());
+                    if (res != 0) {
+                        return res;
+                    }
+                    return o1.getUser().getCity().compareTo(o2.getUser().getCity());
+                })
                 .collect(Collectors.toList());
         System.out.println(increaseSortedOrders);
 
@@ -63,20 +69,27 @@ public class MainList {
 
         System.out.println("Remove orders if the price less than 1500:");
         int price = 1500;
+        Predicate<Order> orderPredicate = new Predicate<Order>() {
+            @Override
+            public boolean test(Order order) {
+                return order.getPrice() > price;
+            }
+        };
         List<Order> ordersNotCheaperThan = orders.stream()
-                .filter(o -> o.getPrice() >= price)
+                .filter(orderPredicate)
                 .collect(Collectors.toList());
         System.out.println(ordersNotCheaperThan);
 
+        MainList mainList = new MainList();
+
         System.out.println("Separate orders for USD and UAH:");
-        System.out.println(separateList(orders, Order::getCurrency));
+        System.out.println(mainList.separateList(orders, Order::getCurrency));
 
         System.out.println("Separate orders as many unique cities are in User:");
-        System.out.println(separateList(orders, Order::getUserCity));
-
+        System.out.println(mainList.separateList(orders, Order::getUserCity));
     }
 
-    public static <T> Map<T, List<Order>> separateList(List<Order> orders, Function<Order, T> function) {
+    public <T> Map<T, List<Order>> separateList(List<Order> orders, Function<Order, T> function) {
         return orders.stream()
                 .collect(Collectors.groupingBy(function));
     }
