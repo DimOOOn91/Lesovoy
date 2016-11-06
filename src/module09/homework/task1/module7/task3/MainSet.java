@@ -5,7 +5,9 @@ import module09.homework.task1.module7.task1.Currency;
 import module09.homework.task1.module7.task1.Order;
 import module09.homework.task1.module7.task1.User;
 
-import java.util.*;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class MainSet {
@@ -48,13 +50,11 @@ public class MainSet {
         System.out.println(theMostExpensiveOrder);
 
         System.out.println("\nDelete orders where currency is USD:");
-
         Currency currency = Currency.USD;
         List<Order> ordersWithoutUsdCurrency = orders.stream()
                 .filter(o -> !o.getCurrency().equals(currency))
                 .collect(Collectors.toList());
         System.out.println(ordersWithoutUsdCurrency);
-
 
     }
 }
