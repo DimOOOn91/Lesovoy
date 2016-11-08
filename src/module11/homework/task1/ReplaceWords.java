@@ -4,9 +4,9 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Main {
+public class ReplaceWords {
 
-    private static File file = new File("task1.txt");
+    private static File file = new File("src/module11/homework/module11.txt");
 
     public static void main(String[] args) {
         Map<String, String> map = new HashMap<>();
@@ -22,15 +22,16 @@ public class Main {
     }
 
     public static String replacer(Map<String, String> map) throws IOException {
-        FileInputStream fileInputStream = new FileInputStream(file);
-        InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-        BufferedReader br = new BufferedReader(inputStreamReader);
+        FileReader fileReader = new FileReader(file);
+        BufferedReader br = new BufferedReader(fileReader);
 
-        String line;
         StringBuilder builder = new StringBuilder();
-        while ((line = br.readLine()) != null) {
+        String line = br.readLine();
+        while (line != null) {
             builder.append(line + System.lineSeparator());
+            line = br.readLine();
         }
+        br.close();
 
         String result = builder.toString();
         for (String key : map.keySet()) {
