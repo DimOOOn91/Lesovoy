@@ -11,14 +11,10 @@ public class CheckIfContains {
 
     public static void main(String[] args) {
 
-        try {
             checkWord("Text");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
-    private static int checkWord(String word) throws FileNotFoundException {
+    private static int checkWord(String word) {
         String content = "";
         try {
             content = ReplaceWords.replacer(null).toLowerCase();
