@@ -2,12 +2,9 @@ package module11.homework.task4;
 
 import module11.homework.task1.ReplaceWords;
 
-import java.io.File;
 import java.io.IOException;
 
 public class CheckIfContains {
-
-    private static File file = new File("src/module11/homework/module11.txt");
 
     public static void main(String[] args) {
 
