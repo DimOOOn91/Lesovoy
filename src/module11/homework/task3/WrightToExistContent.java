@@ -18,7 +18,7 @@ public class WrightToExistContent {
 
     private static File appendChangedContent(Map<String, String> map) {
         try {
-           return RewriteFile.wrightContentToFile(map, true);
+            return RewriteFile.wrightContentToFile(map, true);
         } catch (IOException e) {
             e.printStackTrace();
             return null;

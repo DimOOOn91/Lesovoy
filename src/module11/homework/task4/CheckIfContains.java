@@ -1,17 +1,17 @@
 package module11.homework.task4;
 
-import com.sun.deploy.util.StringUtils;
 import module11.homework.task1.ReplaceWords;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 
 public class CheckIfContains {
 
-    private static File file =  new File("src/module11/homework/module11.txt");
+    private static File file = new File("src/module11/homework/module11.txt");
 
     public static void main(String[] args) {
 
-            checkWord("Text");
+        checkWord("Text");
     }
 
     private static int checkWord(String word) {
@@ -31,7 +31,7 @@ public class CheckIfContains {
             content = content.substring(index + 1);
             index = content.indexOf(request);
         }
-        System.out.println("No of " +word+ " in the input is : " + count);
+        System.out.println("No of " + word + " in the input is : " + count);
         return count;
     }
 

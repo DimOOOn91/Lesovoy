@@ -21,7 +21,7 @@ public class RewriteFile {
 
     private static File overwriteContent(Map<String, String> map) {
         try {
-           return wrightContentToFile(map, false);
+            return wrightContentToFile(map, false);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
