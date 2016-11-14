@@ -13,26 +13,25 @@ public class RewriteFile {
     public static void main(String[] args) {
 
         Map<String, String> map = new HashMap<>();
-        map.put("text", "image");
-        map.put("Text", "Image");
+        map.put("image", "text");
+        map.put("Image", "Text");
 
-        Map<String, String> map2 = new HashMap<>();
-        for (String key : map.keySet()) {
-            map2.put(map.get(key), key);
-        }
-
-        try {
-            fileContentReplacer(map2);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        overwriteContent(map);
     }
 
-    public static File fileContentReplacer(Map<String, String> map) throws IOException {
+    private static File overwriteContent(Map<String, String> map) {
+        try {
+           return wrightContentToFile(map, false);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static File wrightContentToFile(Map<String, String> map, Boolean append) throws IOException {
         String result = ReplaceWords.replacer(map);
-        try (Writer writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write(result);
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, append), "UTF-8"))) {
+            writer.append(result);
         }
         return file;
     }

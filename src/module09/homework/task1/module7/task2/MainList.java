@@ -40,27 +40,27 @@ public class MainList {
         orders.add(new Order(10L, 2500, Currency.UAH, "Sneakers", "Novus", user10));
 
         System.out.println("Sort list by Order price in decrease order:");
-        List<Order> decreaseSortedOrders = orders.stream()
-                .sorted((o1, o2) -> Integer.compare(o2.getPrice(), o1.getPrice()))
-                .collect(Collectors.toList());
-        System.out.println(decreaseSortedOrders);
+//        orders.sort(Comparator.comparing(Order::getPrice).reversed());
+        orders.sort(((o1, o2) -> Integer.compare(o2.getPrice(), o1.getPrice())));
+//        List<Order> decreaseSortedOrders = orders.stream()
+//                .sorted((o1, o2) -> Integer.compare(o2.getPrice(), o1.getPrice()))
+//                .collect(Collectors.toList());
+        System.out.println(orders);
 
         System.out.println("Sort list by Order price in increase order AND User city:");
-        List<Order> increaseSortedOrders = orders.stream()
-                .sorted((o1, o2) -> {
-                    int res = Integer.compare(o1.getPrice(), o2.getPrice());
-                    if (res != 0) {
-                        return res;
-                    }
-                    return o1.getUser().getCity().compareTo(o2.getUser().getCity());
-                })
-                .collect(Collectors.toList());
-        System.out.println(increaseSortedOrders);
+//        List<Order> increaseSortedOrders =
+        orders.sort(Comparator.comparing(Order::getPrice).thenComparing(Order::getUserCity));
+
+        System.out.println(orders);
 
         System.out.println("Sort by itemName, shopIdentificator and User's City:");
-        List<Order> ordersSortedByItemShopAndCity = orders.stream()
-                .sorted(ComperatorByItemShopAndCity::compare)
-                .collect(Collectors.toList());
+        List<Order> ordersSortedByItemShopAndCity = orders;
+        ordersSortedByItemShopAndCity.sort(Comparator.comparing(Order::getItemName)
+                .thenComparing(Order::getShopIdentificator)
+                .thenComparing(Order::getUserCity));
+//        List<Order> ordersSortedByItemShopAndCity = orders.stream()
+//                .sorted(ComperatorByItemShopAndCity::compare)
+//                .collect(Collectors.toList());
         System.out.println(ordersSortedByItemShopAndCity);
 
         System.out.println("Delete duplicates:");
@@ -69,12 +69,7 @@ public class MainList {
 
         System.out.println("Remove orders if the price less than 1500:");
         int price = 1500;
-        Predicate<Order> orderPredicate = new Predicate<Order>() {
-            @Override
-            public boolean test(Order order) {
-                return order.getPrice() > price;
-            }
-        };
+        Predicate<Order> orderPredicate = order -> order.getPrice() > price;
         List<Order> ordersNotCheaperThan = orders.stream()
                 .filter(orderPredicate)
                 .collect(Collectors.toList());

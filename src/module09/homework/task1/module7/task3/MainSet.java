@@ -5,6 +5,7 @@ import module09.homework.task1.module7.task1.Currency;
 import module09.homework.task1.module7.task1.Order;
 import module09.homework.task1.module7.task1.User;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -47,6 +48,7 @@ public class MainSet {
         System.out.println("\nPrint Order with largest price using only one set method - get:");
         Order theMostExpensiveOrder = orders.stream()
                 .max((o1, o2) -> Integer.compare(o1.getPrice(), o2.getPrice())).get();
+
         System.out.println(theMostExpensiveOrder);
 
         System.out.println("\nDelete orders where currency is USD:");

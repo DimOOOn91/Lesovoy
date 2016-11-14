@@ -22,20 +22,22 @@ public class ReplaceWords {
     }
 
     public static String replacer(Map<String, String> map) throws IOException {
-        FileReader fileReader = new FileReader(file);
-        BufferedReader br = new BufferedReader(fileReader);
-
-        StringBuilder builder = new StringBuilder();
+        BufferedReader br = new BufferedReader(new FileReader(file));
         String line = br.readLine();
+        StringBuilder builder = new StringBuilder();
+
         while (line != null) {
             builder.append(line + System.lineSeparator());
             line = br.readLine();
         }
-        br.close();
 
+        br.close();
         String result = builder.toString();
-        for (String key : map.keySet()) {
-            result = result.replaceAll(key, map.get(key));
+
+        if (map != null && !map.isEmpty()) {
+            for (String key : map.keySet()) {
+                result = result.replaceAll(key, map.get(key));
+            }
         }
 
         return result;

@@ -9,6 +9,7 @@ import module07.homework.task1.comperators.IncreaseOrderComparator;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class MainList {
     public static void main(String[] args) {
@@ -147,6 +148,12 @@ public class MainList {
                 List<Order> resultOrders = new ArrayList<>();
                 resultOrders.add(order);
                 result.put(city, resultOrders);
+                Predicate predicate = new Predicate() {
+                    @Override
+                    public boolean test(Object o) {
+                        return false;
+                    }
+                };
             }
         }
         return result;
