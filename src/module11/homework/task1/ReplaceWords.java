@@ -13,31 +13,30 @@ public class ReplaceWords {
 
     public static void main(String[] args) {
         Map<String, String> map = new HashMap<>();
-        map.put("read", "wright");
-        map.put("o", "A");
-        map.put("String", "Integer");
+//        map.put("read", "wright");
+//        map.put("o", "A");
+//        map.put("String", "Integer");
         try {
-            System.out.println(replacer(map));
+            System.out.println(replace(map));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
-    public static String replacer(Map<String, String> map) throws IOException {
+    public static String replace(Map<String, String> map) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
-        String line = br.readLine();
         StringBuilder builder = new StringBuilder();
 
-        while (line != null) {
+        String line ;
+        while ((line = br.readLine()) != null) {
             builder.append(line + System.lineSeparator());
-            line = br.readLine();
         }
 
         br.close();
         String result = builder.toString();
 
-        if (map != null && !map.isEmpty()) {
+        if (map != null) {
             for (String key : map.keySet()) {
                 result = result.replaceAll(key, map.get(key));
             }

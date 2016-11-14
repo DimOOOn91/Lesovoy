@@ -34,8 +34,10 @@ public class RewriteFile {
     }
 
     public static File wrightContentToFile(Map<String, String> map, Boolean append) throws IOException {
-        String result = ReplaceWords.replacer(map);
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, append), "UTF-8"))) {
+        String result = ReplaceWords.replace(map);
+        try (Writer writer = new BufferedWriter(
+                new OutputStreamWriter(
+                        new FileOutputStream(file, append), "UTF-8"))) {
             writer.append(result);
         }
         return file;
