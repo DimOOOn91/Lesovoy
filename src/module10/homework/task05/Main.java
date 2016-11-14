@@ -4,10 +4,12 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            runException(5);
+            runException(2);
+//        } catch (Exception e) {
         } catch (ExceptionOne | ExceptionTwo | ExceptionThree e) {
             System.out.println("EXCEPTION: " + e);
         }
+
     }
 
     public static void runException(int i) throws ExceptionOne, ExceptionTwo, ExceptionThree {
@@ -21,4 +23,5 @@ public class Main {
             System.out.println("Please input number 1, 2 or 3");
         }
     }
+
 }

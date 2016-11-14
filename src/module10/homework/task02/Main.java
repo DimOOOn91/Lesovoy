@@ -14,7 +14,7 @@ public class Main {
                 System.out.println(s);
             }
         } catch (MyFirstException e) {
-            System.out.println("Exception in the Task " + e);
+            System.out.println("Exception in the Task: " + e.getExceptionMessage());
         }
     }
 }

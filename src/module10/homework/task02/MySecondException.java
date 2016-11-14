@@ -1,10 +1,10 @@
 package module10.homework.task02;
 
-public class MyFirstException extends Exception {
+public class MySecondException extends Exception {
 
     private String exceptionMessage;
 
-    public MyFirstException(String message) {
+    public MySecondException(String message) {
         exceptionMessage = message;
     }
 
